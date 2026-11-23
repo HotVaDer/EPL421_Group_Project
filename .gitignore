@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Build output
+*.o
+examples/*
+!examples/*.c
+!examples/*.h
+!examples/Makefile
+!examples/README.md

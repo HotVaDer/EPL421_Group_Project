@@ -1,0 +1,14 @@
+services:
+  dev:
+    build: .
+    image: epl421-liburing
+    container_name: epl421-liburing
+    volumes:
+      - .:/workspace
+    working_dir: /workspace/examples
+    # Docker's default seccomp profile blocks the io_uring system calls,
+    # so it is disabled for this development container.
+    security_opt:
+      - seccomp=unconfined
+    stdin_open: true
+    tty: true

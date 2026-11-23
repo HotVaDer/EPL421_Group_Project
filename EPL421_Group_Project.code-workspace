@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "EPL421 Group Project",
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.DS_Store": true
+		},
+		"files.trimTrailingWhitespace": true,
+		"files.insertFinalNewline": true
+	},
+	"extensions": {
+		"recommendations": []
+	}
+}
