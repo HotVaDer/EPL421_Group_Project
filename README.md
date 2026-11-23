@@ -31,16 +31,43 @@ The raw kernel interface consists of three system calls: `io_uring_setup(2)`,
 `io_uring_enter(2)` and `io_uring_register(2)`. **liburing** wraps these and the ring
 memory handling in a simpler C API.
 
-## Presentation Outline (draft)
+## Presentation Outline
 
-1. Motivation: the cost of blocking I/O and system calls, and the limits of `select`/`poll`/`epoll` and Linux AIO
-2. io_uring architecture: SQ/CQ rings, SQEs, CQEs and the three system calls
-3. The liburing API: setup, submitting work, reaping completions, cleanup
-4. Live examples: file I/O, then a simple network server
-5. Advanced features: linked requests, registered files and buffers, `SQPOLL`, multishot operations
-6. Performance comparison with traditional I/O
-7. Security considerations and where io_uring is restricted
-8. Conclusions and Q&A
+**Duration:** about 30 minutes
+
+| Part | Sections | Time |
+|------|----------|------|
+| 1 – The problem: traditional I/O | 1–3 | ~6 min |
+| 2 – The solution: io_uring and liburing | 4–6 | ~9 min |
+| 3 – In practice | 7–10 | ~9 min |
+| 4 – Conclusions | 11 | ~6 min |
+
+### Part 1 – The problem: traditional I/O
+
+1. **What happens when a program does I/O:** the system call and the switch from user mode to kernel mode
+2. **Blocking I/O:** what happens with three consecutive `read()` calls, each one waiting for the previous to finish
+3. **A classic web server with `read`/`write`:** how it serves clients, and the limits of this model when there are many users
+
+### Part 2 – The solution: io_uring and liburing
+
+4. **What io_uring is:** an asynchronous I/O interface built on memory shared between the application and the kernel
+5. **Submission and Completion Queues:** the SQ and CQ rings, and what an SQE and a CQE are
+6. **The liburing API:** a simple example that submits multiple reads at once
+
+### Part 3 – In practice
+
+7. **Where liburing wins:** a web server scenario where io_uring performs better
+8. **Benchmarks and results**
+9. **`SQPOLL`:** a kernel thread that watches the submission queue, so submitting work needs no system call
+10. **Where liburing loses:** a scenario where io_uring performs worse
+
+### Part 4 – Conclusions
+
+11. **Conclusions:**
+    - Advantages and limitations
+    - Drawbacks of liburing
+    - Security problems
+    - History of io_uring: how it evolved, the problems it faced and the exploits found against it
 
 ## Basic liburing Workflow
 
