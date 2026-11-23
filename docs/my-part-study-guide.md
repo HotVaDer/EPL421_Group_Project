@@ -1,6 +1,6 @@
 # Study Guide – io_uring Presentation & My Part (Part 3)
 
-> Personal notes. Not committed to git.
+> Personal study notes for Part 3.
 
 ---
 
